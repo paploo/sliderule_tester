@@ -1,0 +1,1 @@
+The root library directory for the application.
