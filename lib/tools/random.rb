@@ -1,11 +1,3 @@
-class Range
-  
-  def sample
-    range.to_a.sample
-  end
-  
-end
-
 module Random
   
   def self.mag_float(magnitude=1)
@@ -23,7 +15,21 @@ module Random
     return rand()*10**n
   end
   
-  def self.float(min=0, max=1)
+  def self.float(*args)
+    case args.length
+    when 0
+      min = 0.0
+      max = 1.0
+    when 1
+      min = 0.0
+      max = args[0]
+    when 2
+      min = args[0]
+      max = args[1]
+    else
+      raise ArgumentError, "Unexpected number of arguments.", caller
+    end
+    
     return rand()*(max.to_f-min.to_f) + min.to_f
   end
   
