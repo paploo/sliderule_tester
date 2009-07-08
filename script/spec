@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+spec_exe = '/usr/local/ruby-1.9/bin/spec'
+spec_dir = File.join(File.dirname(__FILE__), '..', 'spec')
+spec_format = 'specdoc'
+
+cmd = "#{spec_exe} --color -f #{spec_format} #{spec_dir}"
+puts "Running as #{cmd.inspect}"
+
+# This seems to output with color
+system(cmd)
+
+# This seems to loose the color
+#STDOUT << `#{cmd}`
