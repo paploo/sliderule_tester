@@ -29,6 +29,8 @@ simple any power
 a*10*x
 a*e^x
 a*b^x
+Note: Any tricks for computations with *very* large numbers, like 2^32 ?  (2^32 == 10^x ==> x == 32 * Log10(2), then split x into 10^ip and and 10^fp parts)
+
 
 Logs
 simple log10
@@ -37,6 +39,8 @@ a*log10(x)
 a*log(x)
 log base n
 a*logN(x)
+Note: Need to do for numbers very close to 1, up to *very* large.
+Note: Any tricks for computations with *very* large numbers, like log2(10^8) ?  (8 * log2(10))
 
 Trig
 Sin (big and small angles)
