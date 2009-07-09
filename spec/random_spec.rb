@@ -14,6 +14,18 @@ describe Random do
     float_test(1000, 10.0, 20.0, 10) {|min,max| Random.float(min, max)}
   end
   
+  it 'should make a random int' do
+    int_test(10000, 0, 100) {Random.int()}
+  end
+  
+  it 'should make a random int within a max value' do
+    int_test(1000, 0, 10) {|min,max| Random.int(max)}
+  end
+  
+  it 'should make a random int with a min amd max' do
+    int_test(1000, 10, 20) {|min,max| Random.int(min, max)}
+  end
+  
   def float_test(n, min, max, bins, &test_block)
     histogram = Array.new(bins.to_i) {0}
     
@@ -31,15 +43,46 @@ describe Random do
       histogram[index] += 1
     end
     
-    # Now check the bin counts are within 1 std dev.
-    puts histogram.inspect
+    # Now check the bin counts are within acceptable error.
+    #puts histogram.inspect
     expectation = n.to_f/bins.to_f
-    error = Math.sqrt(n.to_f) # 1 std dev
+    error = 30.0 * Math.sqrt(n)/bins # I sort of felt this one out... need to figure out the real 2 std dev figure.
+    #puts [expectation, error].inspect
     histogram.each do |count|
       count.should >= expectation-error
       count.should <= expectation+error
     end
     
+    return histogram
+  end
+  
+  def int_test(n, min, max, &test_block)
+    bins = max-min+1
+    histogram = Array.new(bins.to_i) {0}
+    
+    # Get the data and check ranges
+    n.times do
+      x = test_block.call(min, max)
+      
+      x.should <= max
+      x.should >= min
+      
+      index = x - min
+      index.should <= histogram.length
+      index.should >= 0
+      histogram[index] += 1
+    end
+      
+    # Now check the bin counts are within acceptable error.
+    #puts histogram.inspect
+    expectation = n.to_f/bins.to_f
+    error = 30.0 * Math.sqrt(n)/bins # I sort of felt this one out... need to figure out the real 2 std dev figure.
+    #puts [expectation, error].inspect
+    histogram.each do |count|
+      count.should >= expectation-error
+      count.should <= expectation+error
+    end
+
     return histogram
   end
   

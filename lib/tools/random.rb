@@ -1,12 +1,29 @@
 module Random
   
+  def self.int(*args)
+    min, max = process_range_args(0, 100, *args)
+    return rand(max-min+1)+min
+  end
+  
   def self.float(*args)
+    min, max = process_range_args(0.0, 1.0, *args)
+    return rand()*(max.to_f-min.to_f) + min.to_f
+  end
+  
+  def self.mag_float(*args)
+    min, max = process_range_args(0.0, 1.0, *args)
+    value = self.float(0, 10.0)
+    power = self.int(min, max)
+    return value * 10**power
+  end
+  
+  def self.process_range_args(default_min, default_max, *args)
     case args.length
     when 0
-      min = 0.0
-      max = 1.0
+      min = default_min
+      max = default_max
     when 1
-      min = 0.0
+      min = default_min
       max = args[0]
     when 2
       min = args[0]
@@ -15,7 +32,11 @@ module Random
       raise ArgumentError, "Unexpected number of arguments.", caller
     end
     
-    return rand()*(max.to_f-min.to_f) + min.to_f
+    return [min, max]
+  end
+  
+  class << self
+    private :process_range_args
   end
   
 end
