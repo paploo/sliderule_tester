@@ -30,7 +30,7 @@ class Float
     return (sign * ((mag*q).round.to_f) / (q.to_f))
   end
   
-  # Split a floatin point number into the significand and exponent for scientific
+  # Split a floating point number into the significand and exponent for scientific
   # notation.
   def split
     return [0.0, 0] if self.zero?
