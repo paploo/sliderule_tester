@@ -25,8 +25,6 @@ module Generator
       def solution
         num = @numerators.inject(1) {|prod, x| prod*x}
         denom = @denominators.inject(1) {|prod, x| prod*x}
-        puts num.inspect
-        puts denom.inspect
         return num/denom
       end
       
