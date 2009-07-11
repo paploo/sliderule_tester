@@ -1,17 +1,37 @@
+require 'tools/guid'
+
 module CLI
   class Context
     @@current_contexts = []
     
-    def self.push_context(context)
+    def self.push(context)
       @@current_contexts.push(context)
     end
     
-    def self.pop_context(context)
-      @@current_contexts.pop(context)
+    def self.pop
+      @@current_contexts.pop
     end
     
-    def self.current_context
+    def self.current
       return @@current_contexts[-1]
+    end
+    
+    def self.reset
+      @@current_contexts = []
+    end
+    
+    def self.respond_to_command?(command)
+      @@current_contexts.reverse.each do |context|
+        return true if context.respond_to_command?(command)
+      end
+      return false
+    end
+    
+    def self.run_command(command, *args)
+      @@current_contexts.reverse.each do |context|
+        return context.run_command(command, *args) if context.respond_to_command?(command)
+      end
+      raise NoMethodError, "No command found for #{command.to_s.inspect} in any valid context.", caller
     end
     
     def initialize
@@ -24,39 +44,42 @@ module CLI
     attr_writer :main_text, :prompt_text
     
     def register_command(command, *aliases, &handler)
-      handler_guid = build_guid
+      # Store the handler against a guid.
+      handler_guid = Tools::Guid.make
+      @handler_map[handler_guid] = handler
+      
+      # Map the command to the guid.
+      @command_map[command.to_s] = handler_guid
+      
+      # Now assign aliases
+      alias_command(command, *aliases)
     end
     
     def deregister_command(command)
+      # Remove the command from the handler map.
+      @command_map.delete(command.to_s)
+      
+      # TODO: Eventually this should garbage collect handlers!
     end
     
-    def alias_command(cmd_alias, command)
+    def alias_command(command, *aliases)
+      handler_guid = @command_map[command.to_s]
+      aliases.flatten.each do |cmd_alias|
+        @command_map[cmd_alias.to_s] = handler_guid
+      end
     end
     
     def respond_to_command?(command)
+      return @command_map.has_key?(command.to_s)
     end
     
-    private
-    
-    # Returns a 64 bit number that can be assumed unique.
-    #
-    # Note that to gaurantee easy hex output with to_s(16), the high bit is
-    # *always* 1.  All other bits can assume any value, but doesn't need to be
-    # random!
-    def make_guid
-      # 64-64: 1 (width 1 bit)
-      # 53-63: rand (width 11 bits)
-      # 21-52: ti (width 32 bits)
-      # 1-20: tu (width 20 bits)
-      # First build out the time to the microsecond into a 64 bit number.
-
-      now = Time.now
-      ti = now.to_i # 32 bits
-      tu = now.usec # 20 bits
-      r = rand(1<<11) # 11 bits
-
-      # Combine so that the first 64 bits are the random number and the last are the time.
-      return (1<<63) | (r<<52) | (ti<<20) | tu
+    def run_command(command, *args)
+      handler = @handler_map[@command_map[command.to_s]]
+      if !handler.nil?
+        handler.call(*args)
+      else
+        raise NoMethodError, "No command found for #{command.to_s.inspect} in context #{self.to_s}.", caller
+      end
     end
     
   end

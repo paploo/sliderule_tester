@@ -24,10 +24,12 @@ Context:
 + We need a way to register commands and map those to blocks.  [register_command(cmd, *aliases, &handler)]
 + We need a way to alias commands. [alias_command(alias, cmd)]
 + We need a way to check if a command is understood in the context.
++ We need a way to execute the command, including handing it args.
 
 Prompt:
 + Display the main and prompt texts for the bottom level context.
 + Take input, repeat question if invalid input.
++ Input should divide into command and args as closely as to how a shell works as possible.
 + Send for processing when valid.
 + Do NOT handle looping over prompt, that is application's concern.
 

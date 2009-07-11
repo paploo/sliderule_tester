@@ -1,2 +1,1 @@
-require 'cli/asker'
-require 'cli/menu'
+require 'cli/context'
