@@ -2,41 +2,11 @@ require 'tools/guid'
 
 module CLI
   class Context
-    @@current_contexts = []
-    
-    def self.push(context)
-      @@current_contexts.push(context)
-    end
-    
-    def self.pop
-      @@current_contexts.pop
-    end
-    
-    def self.current
-      return @@current_contexts[-1]
-    end
-    
-    def self.reset
-      @@current_contexts = []
-    end
-    
-    def self.respond_to_command?(command)
-      @@current_contexts.reverse.each do |context|
-        return true if context.respond_to_command?(command)
-      end
-      return false
-    end
-    
-    def self.run_command(command, *args)
-      @@current_contexts.reverse.each do |context|
-        return context.run_command(command, *args) if context.respond_to_command?(command)
-      end
-      raise NoMethodError, "No command found for #{command.to_s.inspect} in any valid context.", caller
-    end
     
     def initialize
       @command_map = {}
       @handler_map = {}
+      self.prompt_text = '> '
       yield(self) if block_given?
     end
     

@@ -25,6 +25,7 @@ Context:
 + We need a way to alias commands. [alias_command(alias, cmd)]
 + We need a way to check if a command is understood in the context.
 + We need a way to execute the command, including handing it args.
++ We need a way to list commands with associated help.
 
 Prompt:
 + Display the main and prompt texts for the bottom level context.
@@ -40,5 +41,15 @@ Menus:
 
 Menu Item:
 + name
-+ commands (we really need the root command and aliases, and then the menu needs to derive all possible abbreviations and alias them?)
++ commands (we really need the root command and aliases, and then the menu needs to derive all possible abbreviations and maintain an alias hash.)
 + handler block
+
+Test:
++ Is a context
++ Initialized with a generator.
++ When asked for the main text, it produces a new problem only if the problems and solutions are the same count.
++ The main text is the problem, the prompt is an '='
++ The instructions are separate, and are posted in response to selecting a test.
++ 'end' concludes the test and gives a summary of the results (avg and stddev of the errors?)
++ 'instructions' should give the instructions for the problems.
++ 'help' should be the basic help, which gives a list of commands and descriptions (when that is implemented)
