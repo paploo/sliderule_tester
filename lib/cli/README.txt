@@ -27,6 +27,9 @@ Context:
 
 Prompt:
 + Display the main and prompt texts for the bottom level context.
++ Take input, repeat question if invalid input.
++ Send for processing when valid.
++ Do NOT handle looping over prompt, that is application's concern.
 
 Menus:
 + A subclass of context
