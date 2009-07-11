@@ -1,2 +1,2 @@
-require 'cli/ask'
+require 'cli/asker'
 require 'cli/menu'

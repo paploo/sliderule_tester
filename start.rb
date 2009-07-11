@@ -11,7 +11,9 @@ puts aa.to_s
 
 puts ''
 
-menu = CLI::Menu.new('alpha', 'bravo', 'charlie', 'delta', 'echo', 'foxtrot', 'golf', 'hotel', 'india', 'juliet') do |entry|
+CLI::Asker.register_command('exit') { puts "EXIT" }
+
+menu = CLI::Menu.new('Alphabet', ['alpha', 'bravo', 'charlie', 'delta', 'echo', 'foxtrot', 'golf', 'hotel', 'india', 'juliet']) do |entry|
   puts "You selected #{entry}"
 end
 menu.ask

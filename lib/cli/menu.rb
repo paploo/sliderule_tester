@@ -8,15 +8,17 @@ module CLI
   # data.  Just be sure that the Array#index method works with it!
   class Menu
     
-    def initialize(*entries, &handler)
+    def initialize(title, *entries, &handler)
+      @title = title
       @entries = entries.flatten
       @handler = handler
     end
     
-    attr_reader :entries
+    attr_reader :title, :entries
     
     def to_s
       string = ''
+      string << "*** #{title.to_s} ***\n"
       entries.each_with_index do |entry, index|
         string << '%#2d' % (index+1) + ' - ' + entry.to_s + "\n"
       end
@@ -25,9 +27,9 @@ module CLI
     
     def ask
       STDOUT.puts self.to_s
-      choice = CLI.ask_and_validate("Your choice") {|ch| !choice_to_entry_index(ch).nil?}
+      choice = CLI::Asker.ask_and_validate("Your choice") {|ch| !choice_to_entry_index(ch).nil?}
       index = choice_to_entry_index(choice)
-      @handler.call(entries[index]) unless @handler.nil?
+      @handler.call(index&&entries[index]) unless @handler.nil?
     end
     
     private
