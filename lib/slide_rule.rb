@@ -1,7 +1,4 @@
 class SlideRule
-  MODELS = {
-    :pickett_N4ES => self.new('Pickett', 'N4-ES', 10.00)
-  }
   
   def initialize(make, model, decade_length)
     @make = make.to_s
@@ -11,4 +8,8 @@ class SlideRule
   
   attr_reader :make, :model, :decade_length
   
+  
+  MODELS = {
+    :pickett_N4ES => self.new('Pickett', 'N4-ES', 10.00)
+  }
 end

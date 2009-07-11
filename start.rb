@@ -11,5 +11,7 @@ puts aa.to_s
 
 puts ''
 
-aa = AnswerAnalyzer.new(Math::PI, 3.1)
-puts aa.to_s
+menu = CLI::Menu.new('alpha', 'bravo', 'charlie', 'delta', 'echo', 'foxtrot', 'golf', 'hotel', 'india', 'juliet') do |entry|
+  puts "You selected #{entry}"
+end
+menu.ask
