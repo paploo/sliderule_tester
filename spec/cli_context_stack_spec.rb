@@ -9,6 +9,8 @@ describe CLI::ContextStack do
     stack.current.should == nil
     stack.push(:alpha)
     stack.push(:beta)
+    stack.peek(0).should == :alpha
+    stack.peek(-1).should == :beta
     stack.current.should == :beta
     stack.pop
     stack.current.should == :alpha

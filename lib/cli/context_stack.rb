@@ -2,7 +2,7 @@ module CLI
   class ContextStack
     
     def initialize()
-      @current_contexts = []
+      reset()
     end
     
     def push(context)
@@ -13,12 +13,20 @@ module CLI
       @current_contexts.pop
     end
     
+    def peek(index)
+      return @current_contexts[index]
+    end
+    
     def current
-      return @current_contexts[-1]
+      return peek(-1)
     end
     
     def reset
       @current_contexts = []
+    end
+    
+    def commands
+      return @current_contexts.collect {|context| context.commands}
     end
     
     def respond_to_command?(command)

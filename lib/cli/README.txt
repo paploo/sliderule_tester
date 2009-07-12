@@ -36,15 +36,16 @@ Prompt:
 
 Menus:
 + A subclass of context
-+ Need to understand trees of menus, and facilitate ascending the structure.
 + Should use menu item class to delegate work.
++ Need to understand trees of menus, and facilitate ascending the structure
+  - Can accomplish this by pushing and popping menus to the context stack, *but* we need to make sure not to pop if we are the top level menu.
 
 Menu Item:
 + name
 + commands (we really need the root command and aliases, and then the menu needs to derive all possible abbreviations and maintain an alias hash.)
 + handler block
 
-Test:
+Test (This is NOT a CLI class, but it depends on CLI):
 + Is a context
 + Initialized with a generator.
 + When asked for the main text, it produces a new problem only if the problems and solutions are the same count.

@@ -1,46 +1,73 @@
+require 'abbrev'
+
+require 'cli/menu_item'
+
 module CLI
-  # A menuing class that takes many entries, displays them, handles I/O, and
-  # uses a block as a handler.
-  #
-  # Any object that responds to +to_s+ should work as an entry, as the +to_s+ form
-  # is used for display and identification.  So while strings are the most
-  # common type of entry, an entry class could be used instead, which holds meta
-  # data.  Just be sure that the Array#index method works with it!
-  class Menu
+  class Menu < Context
     
-    def initialize(title, *entries, &handler)
+    def initialize(title)
       @title = title
-      @entries = entries.flatten
-      @handler = handler
+      clear_menu_items()
+      super()
     end
     
-    attr_reader :title, :entries
+    attr_reader :title
     
-    def to_s
-      string = ''
-      string << "*** #{title.to_s} ***\n"
-      entries.each_with_index do |entry, index|
-        string << '%#2d' % (index+1) + ' - ' + entry.to_s + "\n"
+    def <<(menu_item)
+      @menu_items[menu_item.shortcut.to_s] = menu_item
+      cache_commands()
+    end
+    
+    def clear_menu_items
+      # Take advantage of ruby 1.9's ordered hashes.
+      STDERR.puts "WARNING: Expected the ordered behavior of ruby 1.9 hashes.  Menus will be presented in random order now and number shortcuts may not work!" if RUBY_VERSION < '1.9.0'
+      @menu_items = {}
+      @menu_item_commands = {}
+    end
+    alias_method :clear, :clear_menu_items
+    
+    def main_text
+      buffer = "\n"
+      buffer << " #{title} ".center(72, '-') << "\n"
+      buffer << super() unless super().nil?
+      @menu_items.each_with_index do |keyvalue, index|
+        shortcut, item = keyvalue
+        buffer << "  [#{index+1}] #{shortcut}"
+        buffer << ": #{item.description}" unless item.description.nil?
+        buffer << "\n"
       end
-      return string
+      buffer << "\n"
     end
     
-    def ask
-      STDOUT.puts self.to_s
-      choice = CLI::Asker.ask_and_validate("Your choice") {|ch| !choice_to_entry_index(ch).nil?}
-      index = choice_to_entry_index(choice)
-      @handler.call(index&&entries[index]) unless @handler.nil?
+    def commands
+      return super | @menu_item_commands.keys
+    end
+    
+    def run_command(command, *args)
+      if @menu_item_commands.has_key?(command.to_s)
+        item = @menu_item_commands[command.to_s]
+        return item.run
+      else
+        return super
+      end
     end
     
     private
     
-    # Proceses the input menu entry, by name or num, and returns the index of
-    # the entry.
-    def choice_to_entry_index(choice)
-      num = choice.to_i
-      return num-1 if num>0 && num<=entries.length
-      return entries.index(choice.to_s) if entries.include?(choice.to_s)
-      return nil
+    # Gathers the list of all commands derived from menu items and caches the
+    # mapping.
+    def cache_commands
+      # First get the numbers, because that is easy.
+      @menu_items.each_with_index do |keyvalue, index|
+        shortcut, item = keyvalue
+        @menu_item_commands[(index+1).to_s] = item
+      end
+      
+      # Now get the names.
+      @menu_items.keys.abbrev.each do |abbrev, shortcut|
+        item = @menu_items[shortcut]
+        @menu_item_commands[abbrev.downcase] = item
+      end
     end
     
   end

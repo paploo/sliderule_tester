@@ -27,8 +27,8 @@ module CLI
       end
       
       # Process valid input
-      puts "Recognized command #{cmd}"
-      context_stack.run_command(cmd, *args)
+      result = context_stack.run_command(cmd, *args)
+      puts "--> #{result}" unless result.nil?
     end
     
     def self.parse_command_line(input)

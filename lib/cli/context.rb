@@ -4,8 +4,7 @@ module CLI
   class Context
     
     def initialize
-      @command_map = {}
-      @handler_map = {}
+      clear_commands()
       self.prompt_text = '> '
       yield(self) if block_given?
     end
@@ -39,14 +38,23 @@ module CLI
       end
     end
     
+    def clear_commands
+      @command_map = {}
+      @handler_map = {}
+    end
+    
+    def commands
+      return @command_map.keys
+    end
+    
     def respond_to_command?(command)
-      return @command_map.has_key?(command.to_s)
+      return commands.include?(command.to_s)
     end
     
     def run_command(command, *args)
       handler = @handler_map[@command_map[command.to_s]]
       if !handler.nil?
-        handler.call(*args)
+        return handler.call(*args)
       else
         raise NoMethodError, "No command found for #{command.to_s.inspect} in context #{self.to_s}.", caller
       end
