@@ -16,15 +16,21 @@ context_bravo = CLI::Context.new do |c|
   c.register_command('sqr', 'sq', 'square') {|x| puts x.to_f*x.to_f}
 end
 
-context_menu = CLI::Menu.new("Colors") do |m|
+color_menu = CLI::Menu.new("Colors") do |m|
   m.prompt_text = "$ "
   m << CLI::MenuItem.new('Red', 'A scarlet color') { puts "You selected red" }
   m << CLI::MenuItem.new('Orange') { puts "You selected orange" }
+  m << CLI::MenuItem.new('Up', 'Go up one menu') { stack.pop; nil }
+end
+
+main_menu = CLI::Menu.new("Main") do |m|
+  m.prompt_text = "$ "
+  m << CLI::MenuItem.new('colors') { stack.push(color_menu); nil }
 end
 
 stack.push(context_alpha)
 stack.push(context_bravo)
-stack.push(context_menu)
+stack.push(main_menu)
 
 loop do
   begin
