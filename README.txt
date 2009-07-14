@@ -51,6 +51,7 @@ ArcCos
 ArcTan
 Rads -> Deg
 Deg -> Rads
+Rect to Polar: The angle was first obtained from θ = tan-1 (y/x), and then r = y / sin θ or x / cos θ. To go the other way, x = r cos θ and y = r sin θ were used (http://mysite.du.edu/~jcalvert/tech/slidrul.htm)
 
 
 DEV NOTES / REQUIREMENTS:

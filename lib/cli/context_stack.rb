@@ -6,11 +6,13 @@ module CLI
     end
     
     def push(context)
+      context.context_stack = self
       @current_contexts.push(context)
     end
     
     def pop
-      @current_contexts.pop
+      context = @current_contexts.pop
+      context.context_stack = nil
     end
     
     def peek(index)

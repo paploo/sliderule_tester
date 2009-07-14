@@ -9,8 +9,8 @@ module CLI
       yield(self) if block_given?
     end
     
-    attr_reader :main_text, :prompt_text
-    attr_writer :main_text, :prompt_text
+    attr_reader :main_text, :prompt_text, :context_stack
+    attr_writer :main_text, :prompt_text, :context_stack
     
     def register_command(command, *aliases, &handler)
       # Store the handler against a guid.

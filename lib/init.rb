@@ -1,8 +1,9 @@
 require 'extensions'
 require 'tools'
 
+require 'cli'
+
+require 'slide_rule'
 require 'generator'
 require 'answer_analyzer'
-require 'slide_rule'
-
-require 'cli'
+require 'proctor'
