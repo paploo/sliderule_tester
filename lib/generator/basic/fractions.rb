@@ -1,26 +1,26 @@
 module Generator
   module Basic
-    class Multiplication < Base
+    class Fractions < Base
       
       def self.title
-        return "Multiplication"
+        return "Fractions"
       end
       
       def self.description
-        return "Basic multiplication problems."
+        return "Basic multiplication of fractions."
       end
       
       def self.instructions
         return <<-INST
-1. Place 1 over the first number on D,
-2. Read answer on D under second number on C.
+Same as for normal multiplication, except that when a fraction is encountered,
+multiply using CI instead of C.
 INST
       end
       
       def initialize
         @values = []
         Random.int(2,4).times do
-          @values <<  Random.mag_float(-3,3)
+          @values <<  Random.mag_float(-4,4)
         end
       end
       
@@ -29,7 +29,8 @@ INST
       end
       
       def to_s
-        return @values.join(' * ')
+        values = @values.collect {|x| x<1.0 ? "1/#{1/x}" : x}
+        return values.join(' * ')
       end
       
     end

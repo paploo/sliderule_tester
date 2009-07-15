@@ -7,12 +7,18 @@ Sliderule Tester is a library and simple framework for a command line slide rule
 problem practicing program.  It endeavors to give randomly generated problems
 that exercise a variety of sliderule techniques.
 
+BASIC USAGE:
+Start the tester from within the project directory via:
+  $ script/start
+  $ ruby start.rb
+At any time you can type 'exit' or 'quit' at the prompt to quit.
+
 
 FIELDS OF INTEREST:
 
 Multiplication:
 Simple mult, C/D
-Simple division, C/D
+Simple division, C/D (Chains of division may work best with inverses?)
 1/x calculations (Using reverse D scale)
 Mult/Div Chains (a*c*d / b*d*f --> a/b*c/d*e/f), C/D
 

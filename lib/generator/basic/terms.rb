@@ -1,9 +1,9 @@
 module Generator
   module Basic
-    class Chains < Generator::Base
+    class Terms < Generator::Base
       
       def self.title
-        return "Mult/Divide Chains"
+        return "Mult/Divide Complex Terms"
       end
       
       def self.description
@@ -11,7 +11,9 @@ module Generator
       end
       
       def self.instructions
-        return "Postion the 1 on the D scale over the first argument on the C scale, then read the number on the C scale under the second argument."
+        return <<-INST
+1. TODO.
+INST
       end
       
       def initialize

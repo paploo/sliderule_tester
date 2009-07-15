@@ -23,7 +23,7 @@ class Float
   # Rounds to the number of significant digits given
   def round_sigfigs(sigfigs)
     raise RangeError, "#{self.class.name}##{__method__}:: #{sigfigs} must be in range (0..500)", caller unless (0..500).include?(sigfigs)
-    return self if self.zero?
+    return self if self.zero? || self.infinite? || self.nan?
     mag = self.abs
     sign = (self<0) ? -1 : 1
     q = 10**( (sigfigs.to_i - 1) - (Math.log10(mag).floor) )

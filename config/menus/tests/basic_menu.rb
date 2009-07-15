@@ -2,9 +2,10 @@ CONFIG[:menus][:basic_menu] = CLI::Menu.new("Basic Menu") do |m|
   m.prompt_text = CONFIG[:menu_prompt]
   
   tests = [
-    ['Multiplication', '2-4 random numbers multiplied', Generator::Basic::Multiplication],
-    ['Division', '2-4 random numbers divided', Generator::Basic::Division],
-    ['Fractions', 'Go up one menu', Generator::Basic::Chains]
+    ['Multiplication', '2-4 random numbers multiplied.', Generator::Basic::Multiplication],
+    ['Division', '2-4 random numbers divided.', Generator::Basic::Division],
+    ['Fractions', 'Multiplication fractions.', Generator::Basic::Fractions],
+    ['Terms', 'A complex term with a compound numerator and denominator.', Generator::Basic::Terms]
   ]
   
   tests.each do |name, desc, generator|

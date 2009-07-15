@@ -11,12 +11,20 @@ module Generator
       end
       
       def self.instructions
-        return ""
+        return <<-INST
+There are two methods:
+A.
+  1. Place the denominator on C over the numerator on D,
+  2. Read the answer on D under 1.
+B.
+  1. Place 1 over the numerator on D,
+  2. Read the answer on D under the denominator CI.
+INST
       end
       
       def initialize
-        @x = Random.mag_float(0.01,1000.0)
-        @y = Random.mag_float(0.01,1000.0)
+        @x =  Random.mag_float(-3,3)
+        @y =  Random.mag_float(-3,3)
       end
       
       def solution
