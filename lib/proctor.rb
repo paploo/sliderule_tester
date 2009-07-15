@@ -1,7 +1,8 @@
 class Proctor < CLI::Context
   
-  def initialize(generator)
+  def initialize(generator, slide_rule=nil)
     super()
+    @slide_rule = slide_rule || CONFIG[:slide_rule] || SlideRule::MODELS[:generic]
     @generator = generator
     @problems = []
     @answers = []
@@ -46,7 +47,11 @@ class Proctor < CLI::Context
       aa = process_answer(ans.to_f)
       puts "  >> You gave #{aa.answer}"
       puts "  >> Expected #{aa.solution}"
-      puts "  >> Slide read wrong by #{aa.scale_displacement*100.0}% of length"
+      if @slide_rule.nil?
+        puts "  >> Slide read wrong by #{aa.scale_displacement*100.0}% of length"
+      else
+        puts "  >> Slide read wrong by #{aa.scale_displacement(@slide_rule.decade_length)} inches"
+      end
       puts "  >> answer error: #{aa.error*100.0}%"
       puts ""
     end

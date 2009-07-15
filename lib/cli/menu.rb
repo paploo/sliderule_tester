@@ -29,7 +29,7 @@ module CLI
     def main_text
       buffer = "\n"
       buffer << " #{title} ".center(72, '-') << "\n"
-      buffer << super() unless super().nil?
+      buffer << super() << "\n" unless super().nil?
       @menu_items.each_with_index do |keyvalue, index|
         shortcut, item = keyvalue
         buffer << "  [#{index+1}] #{shortcut}"
