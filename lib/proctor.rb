@@ -42,7 +42,27 @@ class Proctor < CLI::Context
     return "You did #{count} problems with an average error of #{avg_error*100.0}% +/- #{error_stddev*100.0}%"
   end
   
+  def respond_to_command?(command)
+    if command =~ float_regex
+      return true
+    else
+      return super
+    end
+  end
+  
+  def run_command(command, *args)
+    if command =~ float_regex
+      return super('answer', command, *args)
+    else
+      return super
+    end
+  end
+  
   private
+  
+  def float_regex
+    return (/^([+-])?(\d*)(\.\d*)?([eE][+-]?\d+)?$/)
+  end
   
   def register_standard_commands
     register_command('instructions', 'i', 'in', 'ins', 'inst') {instructions; puts ""}

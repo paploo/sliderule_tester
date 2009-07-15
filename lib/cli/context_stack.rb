@@ -39,9 +39,11 @@ module CLI
     end
     
     def run_command(command, *args)
+      # First let all contexts try to run the command.
       @current_contexts.reverse.each do |context|
         return context.run_command(command, *args) if context.respond_to_command?(command)
       end
+      # Now error.
       raise NoMethodError, "No command found for #{command.to_s.inspect} in any valid context.", caller
     end
     
