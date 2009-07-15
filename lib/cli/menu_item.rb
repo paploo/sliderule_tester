@@ -2,7 +2,7 @@ module CLI
   class MenuItem
     
     def initialize(shortcut, description=nil, &handler)
-      @shortcut = shortcut.to_s.downcase
+      @shortcut = shortcut
       @description = description
       @handler = handler
     end
