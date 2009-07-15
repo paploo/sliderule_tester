@@ -1,19 +1,23 @@
 class Proctor < CLI::Context
   
-  def initialize(generator, slide_rule=nil)
+  def initialize(generator)
     super()
-    @slide_rule = slide_rule || CONFIG[:slide_rule] || SlideRule::MODELS[:generic]
+    @slide_rule = CONFIG[:slide_rule] || SlideRule::MODELS[:generic]
     @generator = generator
     @problems = []
     @answers = []
     register_standard_commands()
   end
   
-  def main_text()
+  def main_text
     if(@problems.length == @answers.length)
       @problems << @generator.new
     end
     return @problems[-1].to_s
+  end
+  
+  def prompt_text
+    CONFIG[:test_prompt] || super()
   end
   
   def header
