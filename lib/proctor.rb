@@ -37,8 +37,8 @@ class Proctor < CLI::Context
   
   def result_text
     count = @answers.length
-    avg_error = (@answers.inject(0.0) {|s,o| s += o.error}) / count.to_f
-    error_stddev = Math.sqrt(@answers.inject(0.0) {|s,o| s += (o.error-avg_error)**2}) / count.to_f
+    avg_error = (@answers.inject(0.0) {|s,o| s += o.error.abs}) / count.to_f
+    error_stddev = Math.sqrt(@answers.inject(0.0) {|s,o| s += (o.error.abs-avg_error)**2}) / count.to_f
     return "You did #{count} problems with an average error of #{avg_error*100.0}% +/- #{error_stddev*100.0}%"
   end
   
