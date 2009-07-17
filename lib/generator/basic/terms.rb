@@ -12,7 +12,10 @@ module Generator
       
       def self.instructions
         return <<-INST
-1. TODO.
+Alternate division and multiplication as much as possible to reduce slide moves.
+Ex: (a*b)/(c*d) should be performed as a / c * b / d
+Note that this technique can be combined with the CI scale to perform
+multiplication more quickly and with less error.
 INST
       end
       
