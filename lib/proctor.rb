@@ -13,7 +13,9 @@ class Proctor < CLI::Context
     if(@problems.length == @answers.length)
       @problems << @generator.new
     end
-    return @problems[-1].to_s
+    count = @problems.length
+    problem_text = @problems[-1].to_s
+    return "Q#{count}: #{problem_text}"
   end
   
   def prompt_text
