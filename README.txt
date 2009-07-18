@@ -24,8 +24,11 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+
 CONTACT:
+Jeff Reinecke
 jeff@paploo.net
+http://www.paploo.net
 
 
 OVERVIEW:
@@ -33,64 +36,48 @@ Sliderule Tester is a library and simple framework for a command line slide rule
 problem practicing program.  It endeavors to give randomly generated problems
 that exercise a variety of sliderule techniques.
 
+
 BASIC USAGE:
 Start the tester from within the project directory via:
   $ script/start
   $ ruby start.rb
 At any time you can type 'exit' or 'quit' at the prompt to quit.
 
+Initial navigation is via a menuing system.  Once a test is selected, the prompt
+will change to reflect this.
 
-FIELDS OF INTEREST:
+Tests last as long as you let them run.  Enter 'end' at any time to end the test
+and get a result summary.  You will then be presented with the main menu again.
 
-Multiplication:
-Simple mult, C/D
-Simple division, C/D (Chains of division may work best with inverses?)
-1/x calculations (Using reverse D scale)
-Mult/Div Chains (a*c*d / b*d*f --> a/b*c/d*e/f), C/D
+Note that if you select a sliderule model from the library, the slide error will
+be quoted in inches correctly.  If no model is selected, a theoretical 10" rule
+is used.
 
-Sqrs/Cubes and Roots (Using A,K or Root scales is separate instructions)
-Simple Sqrs/Cubes
-Simple Roots
-a*b^2 (A/B only?)
-a*sqrt(b) (A/C and K/C only?)
+COMMANDS:
 
-Pows
-simple 10**x
-simple e**x
-simple any power
-a*10*x
-a*e^x
-a*b^x
-Note: Any tricks for computations with *very* large numbers, like 2^32 ?  (2^32 == 10^x ==> x == 32 * Log10(2), then split x into 10^ip and and 10^fp parts)
+[all contexts]
+exit/quit - quit the program
+help/? - get a list of valid commands (can be ugly thanks to aliases!)
 
+[menus]
+<Item number> - Select said item
+up - Go to the previous menu (when available)
 
-Logs
-simple log10
-simple log
-a*log10(x)
-a*log(x)
-log base n
-a*logN(x)
-Note: Need to do for numbers very close to 1, up to *very* large.
-Note: Any tricks for computations with *very* large numbers, like log2(10^8) ?  (8 * log2(10))
-
-Trig
-Sin (big and small angles)
-Cos (big and small angles)
-Tan (big and small angles)
-ArcSin
-ArcCos
-ArcTan
-Rads -> Deg
-Deg -> Rads
-Rect to Polar: The angle was first obtained from θ = tan-1 (y/x), and then r = y / sin θ or x / cos θ. To go the other way, x = r cos θ and y = r sin θ were used (http://mysite.du.edu/~jcalvert/tech/slidrul.htm)
+[tests]
+end - end the test, output statistics, and go to the main menu
+instructions - re-print the test instructions
 
 
-DEV NOTES / REQUIREMENTS:
+DEVELOPER NOTES:
 
-+ Create random problems using a generator.
-+ A generator needs instructions on how problem is worked.
-+ Give a field to put in worked solution.
-+ Hit button to give correct solution and display error in %
-+ Rate the error based on the order of magnitude of the error percentage?
-+ Need an I/O engine.
+The basic architecture can be divided into two parts, the cli and the backend:
+
+There is nothing really interesting about the backend.  It is primarily based on
+Proctor to control the tests, and Generator subclasses to control the generation
+of problems.  (Generator instances are problems).
+
+The CLI is more interesting, as the CLI directory contains the first prototype
+of a context based event engine for CLI functionality.  At all times the program
+contains a stack of Context instances, each of which knowing how to "draw"
+itself and what commands it responds to.  Commands are then passed up through
+the contexts until a context knows how to handle it.
