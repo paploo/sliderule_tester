@@ -23,8 +23,8 @@ INST
       end
       
       def initialize
-        @x =  Random.mag_float(-3,3)
-        @y =  Random.mag_float(-3,3)
+        @x = Random.mag_float(-3,3)
+        @y = Random.mag_float(-3,3)
       end
       
       def solution
