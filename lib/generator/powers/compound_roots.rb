@@ -1,5 +1,5 @@
 module Generator
-  module Basic
+  module Powers
     class CompoundRoots < Base
       
       def self.title

@@ -1,5 +1,5 @@
 module Generator
-  module Basic
+  module Powers
     class CompoundSquares < Base
       
       def self.title
