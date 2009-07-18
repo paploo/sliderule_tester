@@ -67,7 +67,7 @@ class Proctor < CLI::Context
   end
   
   def register_standard_commands
-    register_command('instructions', 'i', 'in', 'ins', 'inst') {instructions; puts ""}
+    register_command('instructions', 'i', 'in', 'ins', 'inst') {puts instructions()}
     
     register_command('ans', 'answer', 'a', 'an') do |ans|
       aa = process_answer(ans.to_f)
