@@ -6,7 +6,8 @@ CONFIG[:menus][:powers_menu] = CLI::Menu.new("Powers Menu") do |m|
     [nil, 'Basic Cubes and Cube Roots.', Generator::Powers::BasicCubesAndRoots],
     [nil, 'Compound Squares (i.e. a*x^2).', Generator::Powers::CompoundSquares],
     [nil, 'Compound Roots (i.e. a*sqrt(x)).', Generator::Powers::CompoundRoots],
-    [nil, 'Basic Arbitrary Powers.', Generator::Powers::BasicPowers]
+    [nil, 'Basic Arbitrary Powers.', Generator::Powers::BasicPowers],
+    [nil, 'Large and Small Arbitrary Powers.', Generator::Powers::LargeAndSmallPowers]
   ]
   
   tests.each do |name, desc, generator|

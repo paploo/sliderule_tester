@@ -12,7 +12,7 @@ module Random
   
   def self.mag_float(*args)
     min, max = process_range_args(0.0, 1.0, *args)
-    value = self.float(0, 10.0)
+    value = self.float(1.0, 10.0)
     power = self.int(min, max)
     return value * 10**power
   end
