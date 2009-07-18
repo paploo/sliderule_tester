@@ -17,6 +17,10 @@ module Random
     return value * 10**power
   end
   
+  def self.sign
+    return rand(2).zero? ? -1 : 1
+  end
+  
   def self.process_range_args(default_min, default_max, *args)
     case args.length
     when 0
