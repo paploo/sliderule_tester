@@ -36,7 +36,7 @@ INST
       end
       
       def to_s
-        return "#{@a} * #{@x} ^ 2"
+        return "#{@a} * #{@x}^2"
       end
       
     end

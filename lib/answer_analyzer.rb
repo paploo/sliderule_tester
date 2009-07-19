@@ -43,8 +43,8 @@ class AnswerAnalyzer
   def calcualte_scale_displacement
     return nil if @solution_sig.zero? || @answer_sig.zero?
     
-    @u_solution = Math.log10(@solution_sig)
-    @u_answer = Math.log10(@answer_sig)
+    @u_solution = Math.log10(@solution_sig.abs)
+    @u_answer = Math.log10(@answer_sig.abs)
     @delta_u = @u_answer - @u_solution
     return @delta_u
   end

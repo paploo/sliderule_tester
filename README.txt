@@ -31,6 +31,10 @@ jeff@paploo.net
 http://www.paploo.net
 
 
+REQUIREMENTS:
+Ruby 1.9.1 is required for this software to function.
+
+
 OVERVIEW:
 Sliderule Tester is a library and simple framework for a command line slide rule
 problem practicing program.  It endeavors to give randomly generated problems

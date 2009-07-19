@@ -32,7 +32,7 @@ INST
       
       def to_s
         if( @n >= 1.0 )
-          return "#{@x} ^ 3"
+          return "#{@x}^3"
         else
           return "cuberoot(#{@x})"
         end

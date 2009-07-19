@@ -32,7 +32,7 @@ INST
       
       def to_s
         if( @n >= 1.0 )
-          return "#{@x} ^ 2"
+          return "#{@x}^2"
         else
           return "sqrt(#{@x})"
         end
