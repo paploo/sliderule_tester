@@ -12,3 +12,4 @@ Ideas:
 3. Gaussian Distribution Value
 4. Projectile motion (could get trig involved here!)
 5. Areas/Volumes/Surface of circles and spheres.
+6. Thermodynamics
