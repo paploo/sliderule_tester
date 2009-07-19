@@ -26,6 +26,30 @@ describe Random do
     int_test(1000, 10, 20) {|min,max| Random.int(min, max)}
   end
   
+  it 'should make a random floats in a magnitude range' do
+    n = 10000
+    
+    n.times do
+      x = Random.mag_float(1,10)
+      x.should >= 1.0
+      x.should < 10.0
+    end
+    
+    n.times do
+      x = Random.mag_float(0.01,100)
+      x.should >= 0.01
+      x.should < 100
+    end
+  end
+  
+  it 'should make random signs' do
+    pending
+  end
+  
+  it 'should select random array values' do
+    pending
+  end
+  
   def float_test(n, min, max, bins, &test_block)
     histogram = Array.new(bins.to_i) {0}
     

@@ -23,8 +23,8 @@ INST
         num_count = Random.int(2,5)
         denom_count = Random.int(2,5)
         
-        @numerators = Array.new(num_count) { Random.mag_float(-2,2) }
-        @denominators = Array.new(denom_count) { Random.mag_float(-2,2) }
+        @numerators = Array.new(num_count) { Random.mag_float(0.001,1000) }
+        @denominators = Array.new(denom_count) { Random.mag_float(0.001,1000) }
       end
       
       def solution

@@ -26,8 +26,8 @@ INST
       end
       
       def initialize
-        @a = Random.mag_float(-3,4)
-        @x = Random.mag_float(-3,4)
+        @a = Random.mag_float(0.0001,10000)
+        @x = Random.mag_float(0.0001,10000)
         @n = 2.0
       end
       

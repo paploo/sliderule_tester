@@ -20,8 +20,8 @@ INST
       end
       
       def initialize
-        @x = Random.mag_float(0,1) * Random.sign
-        @n = Random.mag_float(-1,0) * Random.sign
+        @x = Random.mag_float(1,10) * Random.sign
+        @n = Random.mag_float(0.1,0) * Random.sign
       end
       
       def solution

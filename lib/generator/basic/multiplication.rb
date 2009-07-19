@@ -20,7 +20,7 @@ INST
       def initialize
         @values = []
         Random.int(2,4).times do
-          @values <<  Random.mag_float(-3,3)
+          @values <<  Random.mag_float(0.001,10000)
         end
       end
       

@@ -13,12 +13,16 @@ module Random
   def self.mag_float(*args)
     min, max = process_range_args(0.0, 1.0, *args)
     value = self.float(1.0, 10.0)
-    power = self.int(min, max)
+    power = self.int(Math.log10(min), Math.log10(max)-1)
     return value * 10**power
   end
   
   def self.sign
     return rand(2).zero? ? -1 : 1
+  end
+  
+  def self.element(array)
+    return array[rand(array.length)]
   end
   
   def self.process_range_args(default_min, default_max, *args)
