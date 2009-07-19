@@ -9,3 +9,9 @@ Generators for Logarithms including:
        the exponent be irrational and N being an integer!)
 
 Note: It is important to give negative values of x in exp(x) and 10^x calcs.
+
+TODO: The arbitrary base exponents/logs aren't terribly useful, since they are
+the same functionality as the arbitrary powers.  However, we should divide things
+up into doing large exponents that cannot use LL and smaller exponents that can
+(and vice-versa for logs).  (Base 2 could be useful, but most people would turn
+them into a base 10 or base E problem anyway).
