@@ -1,13 +1,13 @@
 module Generator
   module Logs
-    class SimpleLogs < Base
+    class AdvancedLogs < Base
       
       def self.title
-        return "Simple Logs"
+        return "Advanced Logs"
       end
       
       def self.description
-        return "Logarithms of common bases."
+        return "Logarithms of common bases of very large and small numbers."
       end
       
       def self.instructions
@@ -22,8 +22,8 @@ INST
       end
       
       def initialize
-        @b = Random.element([2, :e, 10])
-        @x = Random.mag_float(0.001,10000)
+        @b = Random.element([:e, 10])
+        @x = Random.element([Random.mag_float(0.0001,1e-10), Random.mag_float(10000,1e10)]) * Random.sign
         @b_num = @b==:e ? Math::E : @b
       end
       

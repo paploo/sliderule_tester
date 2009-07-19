@@ -1,13 +1,13 @@
 module Generator
   module Logs
-    class SimpleExponents < Base
+    class AdvancedExponents < Base
       
       def self.title
-        return "Simple Exponents"
+        return "Advanced Exponents"
       end
       
       def self.description
-        return "Exponentiation of common bases."
+        return "Exponentiation of common bases with very large or small numbers."
       end
       
       def self.instructions
@@ -25,8 +25,8 @@ INST
       end
       
       def initialize
-        @b = Random.element([2, :e, 10])
-        @x = Random.mag_float(0.1,10) * Random.sign
+        @b = Random.element([:e, 10])
+        @x = Random.element([Random.mag_float(0.1,0.0001), Random.mag_float(10,1000)]) * Random.sign
         @b_num = @b==:e ? Math::E : @b
       end
       

@@ -4,8 +4,8 @@ CONFIG[:menus][:logs_menu] = CLI::Menu.new("Logs Menu") do |m|
   tests = [
     [nil, 'Basic Logarithms.', Generator::Logs::SimpleLogs],
     [nil, 'Basic Exponents.', Generator::Logs::SimpleExponents],
-    [nil, 'Advanced Logarithms.', Generator::Logs::ArbitraryBaseLogs],
-    [nil, 'Advanced Exponents.', Generator::Logs::ArbitraryBaseExponents],
+    [nil, 'Advanced Logarithms.', Generator::Logs::AdvancedLogs],
+    [nil, 'Advanced Exponents.', Generator::Logs::AdvancedExponents],
   ]
   
   tests.each do |name, desc, generator|
