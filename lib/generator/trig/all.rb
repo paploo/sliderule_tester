@@ -12,12 +12,12 @@ module Generator
       
       def self.instructions
         return <<-INST
-Use the methods outlined in the specific tests.
+Use the methods outlined in the tests for specific trig functions.
 INST
       end
       
       def initialize
-        @base_function = Random.element(supported_functions())
+        @base_function = Random.element(test_functions())
         @angle_deg = random_angle(@base_function)
         @angle_rad = @angle_deg.to_rad
         @x = Math.send(@base_function, @angle_rad)
@@ -33,20 +33,20 @@ INST
           return @angle_deg
         elsif( !@test_inverse && @test_with_rads )
           return @x
-        elsif( !@test_inverse && !@test_with_rads
+        elsif( !@test_inverse && !@test_with_rads )
           return @x
         end
       end
       
       def to_s
         if( @test_inverse && @test_with_rads )
-          return "a#{method.to_s}(#{x}) = ? rads"
+          return "a#{@base_function.to_s}(#{@x}) = ? rads"
         elsif( @test_inverse && !@test_with_rads )
-          return "a#{method.to_s}(#{x}) = ? degrees"
+          return "a#{@base_function.to_s}(#{@x}) = ? degrees"
         elsif( !@test_inverse && @test_with_rads )
-          return "#{method.to_s}(#{@angle_rad} rad)"
-        elsif( !@test_inverse && !@test_with_rads
-          return "#{method.to_s}(#{@angle_deg} deg)"
+          return "#{@base_function.to_s}(#{@angle_rad} rad)"
+        elsif( !@test_inverse && !@test_with_rads )
+          return "#{@base_function.to_s}(#{@angle_deg} deg)"
         end
       end
       
@@ -54,7 +54,7 @@ INST
       
       # Subclasses should override this to change the list of functions being
       # tested.
-      def test_function
+      def test_functions
         return [:sin, :cos, :tan, :sec, :csc, :cot]
       end
       

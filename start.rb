@@ -9,5 +9,6 @@ loop do
     raise i
   rescue Exception => e
     puts "Recieved exception: #{e.class.name}: #{e.inspect}\n\t" + e.backtrace.join("\n\t")
+    exit(1)
   end
 end

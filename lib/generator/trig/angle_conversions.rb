@@ -1,6 +1,6 @@
 module Generator
   module Trig
-    class BasicPowers < Base
+    class AngleConversions < Base
       
       def self.title
         return "Angle Conversions"
@@ -35,9 +35,9 @@ INST
       
       def to_s
         if @to_rad
-          return "#{deg} deg in radians"
+          return "#{@deg} deg in radians"
         else
-          return "#{rad} rads in degrees"
+          return "#{@rad} rads in degrees"
         end
       end
       

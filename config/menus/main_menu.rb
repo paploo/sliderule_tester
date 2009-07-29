@@ -6,4 +6,5 @@ CONFIG[:menus][:main_menu] = CLI::Menu.new("Main") do |m|
   m << CLI::MenuItem.new('Basic', 'Basic operations like multiplication and division.') { m.context_stack.push(CONFIG[:menus][:basic_menu]); nil }
   m << CLI::MenuItem.new('Powers', 'Operations involving powers, including roots, squares, and cubes.') { m.context_stack.push(CONFIG[:menus][:powers_menu]); nil }
   m << CLI::MenuItem.new('Logs', 'Operations involving logs and antilogs.') { m.context_stack.push(CONFIG[:menus][:logs_menu]); nil }
+  m << CLI::MenuItem.new('Trig', 'Operations involving trigonometric functions.') { m.context_stack.push(CONFIG[:menus][:trig_menu]); nil }
 end
