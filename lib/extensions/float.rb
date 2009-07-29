@@ -43,3 +43,18 @@ class Float
   end
   
 end
+
+
+
+
+class Float
+  
+  def to_rad
+    return self * 0.0174532925199432957692369076849
+  end
+  
+  def to_deg
+    return self * 57.2957795130823208767981548141
+  end
+  
+end

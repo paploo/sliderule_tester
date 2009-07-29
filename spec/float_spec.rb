@@ -36,4 +36,9 @@ describe Float do
     314159265358979.0.to_pretty_string.should == '3.142e+14'
   end
   
+  it 'should convert to/from radians and degrees' do
+    180.0.to_rad.should be_close(Math::PI, 10e-12)
+    Math::PI.to_deg.should be_close(180.0, 10e-12)
+  end
+  
 end

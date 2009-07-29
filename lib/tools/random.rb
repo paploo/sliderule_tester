@@ -17,6 +17,10 @@ module Random
     return value * 10**power
   end
   
+  def self.bool
+    return rand(2).zero? ? true : false
+  end
+  
   def self.sign
     return rand(2).zero? ? -1 : 1
   end
