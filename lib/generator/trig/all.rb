@@ -18,8 +18,8 @@ INST
       
       def initialize
         @base_function = Random.element(test_functions())
-        @angle_deg = random_angle(@base_function)
-        @angle_rad = @angle_deg.to_rad
+        @angle_rad = random_angle(@base_function)
+        @angle_deg = @angle_rad.to_deg
         @x = Math.send(@base_function, @angle_rad)
         
         @test_inverse = test_inverse_functions? ? Random.bool : false
@@ -94,12 +94,14 @@ INST
           :medium_low  => [0.17453292519943295769, 0.78539816339744830962], # 10 deg to 45 deg
           :medium_high => [0.78539816339744830962, 1.39626340159546366154], # 45 deg to 80 deg
           :big         => [1.39626340159546366154, 1.47079632679489661923], # 80 deg to 84.3 deg
-          :huge        => [5.42957795130823208768, 1.56079632679489661923], # 84.3 deg to 89.43 deg
+          :huge        => [1.47079632679489661923, 1.56079632679489661923], # 84.3 deg to 89.43 deg
           :really_huge => [1.56079632679489661923, 1.57079632679489661923], # 89.43 deg to 90 deg
 
           :low         => [0.00000000000000000000, 0.17453292519943295769], # 0 deg to 10 deg
           :medium      => [0.17453292519943295769, 1.39626340159546366154], # 10 deg to 80 deg
           :high        => [1.39626340159546366154, 1.57079632679489661923], # 80 deg to 90 deg
+          
+          :test        => [0.5, 0.5] # Used for testing, approx 28.65 degrees
         }
 
         DOMAINS = {

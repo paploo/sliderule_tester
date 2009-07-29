@@ -15,7 +15,7 @@ class AnswerAnalyzer
   # the total number of units you are off.  (e.g. If you pass 10 for a 10" scale, the
   # result will be in inches.)
   def scale_displacement(rule_length = 1.0)
-    return @delta_u * rule_length
+    return @delta_u && (@delta_u * rule_length)
   end
   
   # Give a human readable output

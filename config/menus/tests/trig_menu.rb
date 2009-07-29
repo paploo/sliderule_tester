@@ -3,6 +3,7 @@ CONFIG[:menus][:trig_menu] = CLI::Menu.new("Powers Menu") do |m|
   
   tests = [
     ['Conversions', 'Convert angles to/from radians and degrees', Generator::Trig::AngleConversions],
+    ['Cos', 'Cos and ArcCos.', Generator::Trig::Cos],
     ['All', 'A mixture of all trig functions.', Generator::Trig::All],
   ]
   
