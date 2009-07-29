@@ -3,20 +3,28 @@ require 'cli/context_stack'
 
 describe CLI::ContextStack do
   
-  it "should maintain the context stack." do 
+  it "should maintain the context stack." do
+    class TestObj < Object
+      attr_reader :context_stack
+      attr_writer :context_stack
+    end
+    alpha = TestObj.new
+    beta = TestObj.new
+    gamma = TestObj.new
+    
     stack = CLI::ContextStack.new
     stack.reset
     stack.current.should == nil
-    stack.push(:alpha)
-    stack.push(:beta)
-    stack.peek(0).should == :alpha
-    stack.peek(-1).should == :beta
-    stack.current.should == :beta
+    stack.push(alpha)
+    stack.push(beta)
+    stack.peek(0).should == alpha
+    stack.peek(-1).should == beta
+    stack.current.should == beta
     stack.pop
-    stack.current.should == :alpha
+    stack.current.should == alpha
     stack.pop
     stack.current.should == nil
-    stack.push(:gamma)
+    stack.push(gamma)
     stack.reset
     stack.current.should == nil
   end
