@@ -16,13 +16,13 @@ There are several methods to calculate the cosine, depending on the angle range.
 Note that for some problems it can beneficial to just compute the sine of the
 complement.
 
-A. For angles over 89.43 degrees
+A. For angles over 89.43 degrees:
   1. Find the compliment of the angle.
   2. Convert to radians; this is your answer.
-B. For angles between 84.3 degrees and 89.43 degrees
+B. For angles between 84.3 degrees and 89.43 degrees:
   1. Find the compliment of the angle (in degrees).
   2. Look up the sine of the compliment on the SRT scale.
-C. For angle between 10 degrees and 84.3 degrees.
+C. For angle between 10 degrees and 84.3 degrees:
   1. Use the S scale with either:
     = The reverse markings, or
     - The compliment of the angle
