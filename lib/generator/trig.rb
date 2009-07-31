@@ -9,3 +9,4 @@ require 'generator/trig/inverse'
 require 'generator/trig/secant'
 
 require 'generator/trig/angle_conversions'
+require 'generator/trig/polar'
