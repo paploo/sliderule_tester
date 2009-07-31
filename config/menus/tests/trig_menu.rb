@@ -6,6 +6,9 @@ CONFIG[:menus][:trig_menu] = CLI::Menu.new("Powers Menu") do |m|
     ['Sin', 'Sin and ArcSin.', Generator::Trig::Sin],
     ['Cos', 'Cos and ArcCos.', Generator::Trig::Cos],
     ['Tan', 'Tan and ArcTan.', Generator::Trig::Tan],
+    ['Csc', 'Csc and ArcCsc.', Generator::Trig::Csc],
+    ['Sec', 'Sec and ArcSec.', Generator::Trig::Sec],
+    ['Cot', 'Cot and ArcCot.', Generator::Trig::Cot],
     ['All', 'A mixture of all trig functions.', Generator::Trig::All],
   ]
   
