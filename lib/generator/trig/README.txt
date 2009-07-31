@@ -1,6 +1,6 @@
 Sin:
   0 to 0.57 deg: convert to radians.
-  0.57 to 5.7 deg: use SRT.
+  0.57 to 5.7 deg: use ST/SRT.
   5.7 to 80 deg: use S.
   80-90 deg: use expansion if S not good enough. (1 - ((90-x)/81.03)^2)
  
@@ -10,7 +10,7 @@ Cos:
  
 Tan:
   0 to 0.57 deg: convert to radians.
-  0.57 to 5.7 deg: use SRT.
+  0.57 to 5.7 deg: use ST/SRT.
   5.7 to 45 deg: use T.
   45 to 84.3 deg: use T against CI instead of C.
   84.3 to 90 deg: Use expansion 57.30/(90-x)
@@ -34,7 +34,7 @@ Generators for trig functions.
 
 The usage is different for small angles vs large angles!
 1. 0<x<0.57 deg, convert to radians.
-2. 0.57<x<5.7 deg, use SRT.
+2. 0.57<x<5.7 deg, use ST/SRT.
 3. 5.7<x<80 deg, use S or T.
 4. 80<x<90 deg, use expansions (see below).
 * Note that for cosine, we have the reverse relationship as cos is the sin of

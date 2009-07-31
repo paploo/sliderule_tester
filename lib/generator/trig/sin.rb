@@ -17,7 +17,7 @@ There are several methods to calculate the sine, depending on the angle range.
 A. For angles under 0.57 degrees:
   1. Convert to radians; this is your answer.
 B. For angles between 0.57 degrees and 5.7 degrees:
-  2. Use the SRT scale.
+  2. Use the ST/SRT scale.
 C. For angle between 5.7 degrees and 80 degrees:
   1. Use the S scale.
 D. For angles between 80 degrees and 90 degrees, one can usually get

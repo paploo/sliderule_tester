@@ -21,7 +21,7 @@ A. For angles over 89.43 degrees:
   2. Convert to radians; this is your answer.
 B. For angles between 84.3 degrees and 89.43 degrees:
   1. Find the compliment of the angle (in degrees).
-  2. Look up the sine of the compliment on the SRT scale.
+  2. Look up the sine of the compliment on the ST/SRT scale.
 C. For angle between 10 degrees and 84.3 degrees:
   1. Use the S scale with either:
     = The reverse markings, or
