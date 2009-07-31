@@ -24,8 +24,8 @@ INST
         return [:sec]
       end
       
-      def test_inverse_functions?
-        return true
+      def test_inverse_function?
+        return false
       end
       
       def test_with_radians?

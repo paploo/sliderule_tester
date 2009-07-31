@@ -22,8 +22,8 @@ INST
         @angle_deg = @angle_rad.to_deg
         @x = Math.send(@base_function, @angle_rad)
         
-        @test_inverse = test_inverse_functions? ? Random.bool : false
-        @test_with_rads = test_with_radians? ? Random.bool : false
+        @test_inverse = test_inverse_function?
+        @test_with_rads = test_with_radians?
       end
       
       def solution
@@ -58,16 +58,16 @@ INST
         return [:sin, :cos, :tan, :sec, :csc, :cot]
       end
       
-       # Subclasses should change this to indicate if the inverse of the functions
-       # being tested can be tested.
-      def test_inverse_functions?
-        return true
+       # Subclasses should override this to return a boolean on if the inverse
+       # function should be tested or not.
+      def test_inverse_function?
+        return Random.bool
       end
       
-      # Subclasses should change this to indicate if some problems should have
-      # angles in radians instead of degrees.
+      # Subclasses should override this to return a boolean on if the problem
+      # should use radians or not.
       def test_with_radians?
-        return true
+        return Random.bool
       end
       
       # Return a random angle, in RADIANS in one of the following range groups.

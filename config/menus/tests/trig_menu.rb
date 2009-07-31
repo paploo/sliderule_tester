@@ -3,13 +3,12 @@ CONFIG[:menus][:trig_menu] = CLI::Menu.new("Powers Menu") do |m|
   
   tests = [
     ['Conversions', 'Convert angles to/from radians and degrees', Generator::Trig::AngleConversions],
-    ['Sin', 'Sin and ArcSin.', Generator::Trig::Sin],
-    ['Cos', 'Cos and ArcCos.', Generator::Trig::Cos],
-    ['Tan', 'Tan and ArcTan.', Generator::Trig::Tan],
-    ['Csc', 'Csc and ArcCsc.', Generator::Trig::Csc],
-    ['Sec', 'Sec and ArcSec.', Generator::Trig::Sec],
-    ['Cot', 'Cot and ArcCot.', Generator::Trig::Cot],
-    ['All', 'A mixture of all trig functions.', Generator::Trig::All],
+    ['Sin', 'Sine.', Generator::Trig::Sin],
+    ['Cos', 'Cosine.', Generator::Trig::Cos],
+    ['Tan', 'Tangent.', Generator::Trig::Tan],
+    ['Inverse', 'ArcSin, ArcCos, and ArcTan', Generator::Trig::Inverse],
+    ['Inverted', 'Sec, Csc, and Cot and their inverses', Generator::Trig::Csc],
+    ['All', 'A mixture of all trig functions and their inverses.', Generator::Trig::All],
   ]
   
   tests.each do |name, desc, generator|

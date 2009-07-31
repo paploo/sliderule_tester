@@ -38,7 +38,7 @@ INST
         return [:tan]
       end
       
-      def test_inverse_functions?
+      def test_inverse_function?
         return true
       end
       

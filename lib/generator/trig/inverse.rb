@@ -1,35 +1,30 @@
 module Generator
   module Trig
-    class Cot < All
+    class Inverse < All
       
       def self.title
-        return "Cotangent"
+        return "Inverse"
       end
       
       def self.description
-        return "Cotangent and Arc-Cotangent."
+        return "Inverse Trig Functions: ArcSin, ArcCos, ArcTan."
       end
       
       def self.instructions
         return <<-INST
-A. Calculate cot(x) as
-  1. 1/tan(x), or
-  2. tan(x'), where x' is the compliment of x.
-B. Calculate acot(x) as
-  1. atan(1/x)
-  2. The compliment of atan(x)
-These can be done by calculating for cosine, but swhiching the C and CI scale.
+To compute inverse trig functions, do the same steps as normal except
+in reverse.
 INST
       end
       
       private
       
       def test_functions
-        return [:cot]
+        return [:sin, :cos, :tan]
       end
       
       def test_inverse_function?
-        return false
+        return true
       end
       
       def test_with_radians?
